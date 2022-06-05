@@ -10,10 +10,10 @@ wget --server-response --output-document response.out --header='Content-Type: ap
 
 
 
-
-docker build --tag american_predictor .
+docker login
+# docker build --tag american_predictor .
 docker images
-
-
+docker build . -t arthursl12/american_tweet_predictor:0.3
+docker push arthursl12/american_tweet_predictor:0.3
 
 docker run --publish 5002:5000 american_predictor
