@@ -1,3 +1,8 @@
 ssh arthurlima@69.195.152.146 -p 4422
 ssh -fNT -L 22222:localhost:22222 arthurlima@69.195.152.146 -p 4422
-scp -P 4422 arthurlima@69.195.152.146:/home/arthurlima/Model_Training/* .
+
+scp -P 4422 arthurlima@69.195.152.146:/home/arthurlima/Cloud_TP2/* .
+
+ssh -fNT -L 5002:localhost:5002 arthurlima@69.195.152.146 -p 4422
+flask run
+
