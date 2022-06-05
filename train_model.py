@@ -1,5 +1,6 @@
 import pandas as pd
 import pickle
+import datetime
 
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
@@ -32,6 +33,7 @@ text_clf = Pipeline([
 
 # Training
 text_clf.fit(X_train,y_train)
+now = datetime.datetime.now()
 print(f"Training score: {text_clf.score(X_train, y_train):.3f}")
 
 # Accuracy in the test set
@@ -40,6 +42,11 @@ print(f"Test score: {text_clf.score(X_test, y_test):.3f}")
 # Saving the model
 filename = 'trained_model.sk'
 pickle.dump(text_clf, open(filename, 'wb'))
+date_filename = 'last_updated.date'
+pickle.dump(now, open(date_filename, 'wb'))
+
+loaded_now = pickle.load(open(date_filename, 'rb'))
+print(f"Last updated: {loaded_now}")
 
 # Note: to read it again just do
 # loaded_model = pickle.load(open(filename, 'rb'))
