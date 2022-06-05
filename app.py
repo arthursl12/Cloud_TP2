@@ -3,6 +3,10 @@ from flask import request
 
 import datetime
 import pickle
+import urllib.request
+
+urllib.request.urlretrieve("https://github.com/arthursl12/Cloud_TP2/raw/main/trained_model.sk", "trained_model.sk")
+urllib.request.urlretrieve("https://github.com/arthursl12/Cloud_TP2/raw/main/last_updated.date", "last_updated.date")
 
 app = Flask(__name__)
 app.model = pickle.load(open("trained_model.sk", "rb"))

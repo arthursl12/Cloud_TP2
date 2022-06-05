@@ -8,4 +8,12 @@ flask run
 
 wget --server-response --output-document response.out --header='Content-Type: application/json' --post-data '{"text": "#covid19 new york"}' http://localhost:5002/api/american
 
-docker run --publish 5002:5000 python-docker
+
+
+
+docker build --tag american_predictor .
+docker images
+
+
+
+docker run --publish 5002:5000 american_predictor
