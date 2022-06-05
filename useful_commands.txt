@@ -6,3 +6,4 @@ scp -P 4422 arthurlima@69.195.152.146:/home/arthurlima/Cloud_TP2/* .
 ssh -fNT -L 5002:localhost:5002 arthurlima@69.195.152.146 -p 4422
 flask run
 
+wget --server-response --output-document response.out --header='Content-Type: application/json' --post-data '{"text": "#covid19 new york"}' http://localhost:5002/api/american

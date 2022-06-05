@@ -15,15 +15,21 @@ def hello_world():
 @app.route("/api/american", methods=["POST"])
 def american_process():
     # Get input JSON
-    text = request.get_json(force=False).text
+    text = request.get_json(force=False)['text']
     
-    date_string = datetime.strptime(
+    # Predict using the model
+    result = app.model.predict([text])[0]
+    print(result)
+    
+    # Convert datetime to ISO string
+    date_string = datetime.datetime.strftime(
         app.last_updated, '%Y-%m-%dT%H:%M:%S%z'
-    ).isoformat()
+    )
+    
     # Send a dict response (Flask will convert to JSON
     return {
-        "is_american": 1,
-        "version": "0.0",
+        "is_american": int(result),
+        "version": "0.1",
         "model_date": date_string,
     }
 
