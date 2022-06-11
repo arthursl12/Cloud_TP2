@@ -29,3 +29,7 @@ kubectl delete service american-predictor-service
 
 wget --server-response --output-document response.out --header='Content-Type: application/json' --post-data '{"text": "#covid19 new york"}' http://10.98.9.146:5002/api/american
 python client.py 10.103.101.43:5002 3
+
+argocd login localhost:31443 --username arthurlima --password arthurlima123456 --insecure
+argocd app create arthurlima-argocd-predictor --repo https://github.com/arthursl12/Cloud_TP2_k8s --path . --project arthurlima-project --dest-namespace arthurlima --dest-server https://kubernetes.default.svc --sync-policy auto
+argocd app delete arthurlima-argocd-predictor

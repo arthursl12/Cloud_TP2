@@ -33,7 +33,7 @@ def american_process():
     # Send a dict response (Flask will convert to JSON
     return {
         "is_american": int(result),
-        "version": "0.1",
+        "version": "1.0",
         "model_date": date_string,
     }
 
