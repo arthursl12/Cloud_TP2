@@ -17,3 +17,15 @@ docker build . -t arthursl12/american_tweet_predictor:0.3
 docker push arthursl12/american_tweet_predictor:0.3
 
 docker run --publish 5002:5000 american_predictor
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl get deployments
+kubectl get services
+
+kubectl delete deploy american-predictor-deployment
+kubectl delete service american-predictor-service
+
+
+wget --server-response --output-document response.out --header='Content-Type: application/json' --post-data '{"text": "#covid19 new york"}' http://10.98.9.146:5002/api/american
+python client.py 10.103.101.43:5002 3
