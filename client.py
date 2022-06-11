@@ -3,8 +3,8 @@ Client script to post a JSON with some test
 samples to the Flask API
 
 Usage:
-python client.py      (post a single random sample)
-python client.py N    (post N random samples)
+python client.py IP:PORT     (post a single random sample)
+python client.py IP:PORT N   (post N random samples)
 """
 
 import pandas as pd
@@ -47,13 +47,14 @@ def call_api(X_samples, y_true, url='http://localhost:5002/api/american'):
               f"last_updated={date}")
 
 def main ():
-    if (len(sys.argv) == 1):
+    if (len(sys.argv) == 2):
         # No argument, use default=1 sample
         X_samples, y_true = get_test_dataset_samples()
     else:
-        n=int(sys.argv[1])
+        n=int(sys.argv[2])
         X_samples, y_true = get_test_dataset_samples(n)
-    call_api(X_samples, y_true)
+    url = 'http://'+sys.argv[1]+'/api/american'
+    call_api(X_samples, y_true, url)
     
 if __name__ == "__main__":
     main()
