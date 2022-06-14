@@ -1,0 +1,9 @@
+project: arthurlima-project
+source:
+  repoURL: 'https://github.com/arthursl12/Cloud_TP2_k8s'
+  path: .
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: arthurlima
+syncPolicy:
+  automated: {}
