@@ -33,3 +33,5 @@ python client.py 10.103.101.43:5002 3
 argocd login localhost:31443 --username arthurlima --password arthurlima123456 --insecure
 argocd app create arthurlima-argocd-predictor --repo https://github.com/arthursl12/Cloud_TP2_k8s --path . --project arthurlima-project --dest-namespace arthurlima --dest-server https://kubernetes.default.svc --sync-policy auto
 argocd app delete arthurlima-argocd-predictor
+
+bash untilFail.sh bash run_client.sh 2

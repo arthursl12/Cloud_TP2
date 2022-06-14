@@ -10,6 +10,8 @@ python client.py IP:PORT N   (post N random samples)
 import pandas as pd
 import requests
 import sys
+import time
+from datetime import timedelta
 
 def get_test_dataset_samples(n=1):
     # Reading test dataset
@@ -35,16 +37,20 @@ def call_api(X_samples, y_true, url='http://localhost:5002/api/american'):
     # and print the results
     
     for index, tweet_text in X_samples.items():
+        start_time = time.monotonic()
         r = requests.post(url, json={"text": tweet_text})
+        end_time = time.monotonic()
         result = r.json()['is_american']
         date = r.json()['model_date']
         version = r.json()['version']
+        delta = timedelta(seconds=end_time - start_time)
 
         print(f"ID\t{index}\t: " + 
               f"true={y_true[index]}, " + 
               f"pred={result}, " + \
               f"version={version}, " + \
-              f"last_updated={date}")
+              f"last_updated={date}" + \
+              f"\t {(delta.microseconds/1000):06.3f}ms")
 
 def main ():
     if (len(sys.argv) == 2):
