@@ -1,0 +1,19 @@
+# Train model
+python train_model.py
+
+# Note: the Flask app downloads the model from a GitHub repository
+# So in order to change the model version, we must push the new model, i.e.,
+# the .sk and .date files
+
+# Build and push image (change the last numbers to change version)
+docker build . -t arthursl12/american_tweet_predictor:0.3
+docker push arthursl12/american_tweet_predictor:0.3
+
+# Run client, i.e., make N requests to this 'ip:port/api/american'
+python client.py 10.103.101.43:5002 3
+
+# Create ArgoCD application
+argocd app create arthurlima-argocd-predictor --repo https://github.com/arthursl12/Cloud_TP2_k8s --path . --project arthurlima-project --dest-namespace arthurlima --dest-server https://kubernetes.default.svc --sync-policy auto
+
+# Delete ArgoCD application
+argocd app delete arthurlima-argocd-predictor
