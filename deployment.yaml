@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: american-predictor-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: arthurlima-american-predictor
+  template:
+    metadata:
+      labels:
+        app: arthurlima-american-predictor
+    spec:
+      containers:
+      - name: american-predictor
+        image: arthursl12/american_tweet_predictor:1.5
+        ports:
+        - containerPort: 5002
