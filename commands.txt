@@ -11,8 +11,8 @@ python train_model.py
 # pushed to DockerHub.
 
 # Build and push image (change the last numbers to change version)
-docker build . -t arthursl12/american_tweet_predictor:0.3
-docker push arthursl12/american_tweet_predictor:0.3
+docker build . -t arthursl12/american_tweet_predictor:1.8
+docker push arthursl12/american_tweet_predictor:1.8
 
 # Create ArgoCD application (must be authenticated)
 argocd app create arthurlima-argocd-predictor --repo https://github.com/arthursl12/Cloud_TP2_k8s --path . --project arthurlima-project --dest-namespace arthurlima --dest-server https://kubernetes.default.svc --sync-policy auto
